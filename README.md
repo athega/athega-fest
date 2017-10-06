@@ -1,19 +1,25 @@
-# Nu är det snart dags för Athegas traditionella jullunch!
+# Athega Fest
 
-## Sista anmälningsdatum: 13/12
+## Local development
 
-Vi dukar fram det goda julbordet fredagen 16 december kl. 11.30 och ser
-till att faten är fyllda och stämningen hög fram till ca. 14.30.
+### Prerequisites
+```bash
+\curl -sSL https://get.rvm.io | bash -s stable --ruby
+rvm install 2.1.4
+gem install eventmachine -v '1.0.3' -- --with-cppflags=-I/usr/local/opt/openssl/include
+gem install bundler passenger mongo
+bundle install
+```
 
-[Torbjörn Nilsson](mailto:torbjorn.nilsson@athega.se) svarar gärna på dina frågor.
+### Local mongo
+```bash
+mongod --dbpath some-path
+```
 
-Följ oss gärna på [@athega](https://twitter.com/athega) och om du vill twittra om 
-jullunchen använder du hashtaggen [#athegajul](https://twitter.com/#!/search/realtime/%23athegajul).
+### Local www
+```bash
+passenger start
+```
 
-## Vägbeskrivning
-
-Vårt kontor ligger på **Hantverkargatan 21, 3tr.**
-
-Närmaste tunnelbanestation är Rådhuset _(uppgång Parmmätargatan)_.
-
-[![Athega Map](https://maps.googleapis.com/maps/api/staticmap?center=Athega%20AB,%20Hantverkargatan%2021,%20Stockholm&markers=color:0xFF6600|Hantverkargatan%2021&zoom=15&size=245x245&sensor=false&scale=2)](http://g.co/maps/ndcuq)
+### In the browser
+http://localhost:3000/
