@@ -21,7 +21,7 @@ class Sitting
   end
 
   def guest_status_class
-    return 'sitting' if key == 0
+    return 'sitting red' if key == 0
     return 'sitting red' if full?
 
     case guest_count

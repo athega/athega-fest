@@ -53,10 +53,10 @@ class Jullunch < Sinatra::Base
   #############################################################################
 
   get '/' do
-    sittings = Sitting.sort([:starts_at, 1]).all
+    sittings = Sitting.sort([:starts_at, -1]).all
 
     haml :index, locals: {
-      page_title: 'Athega Jullunch', sittings: sittings, guest: guest_by_token
+      page_title: 'Athegas 20-årskalas', sittings: sittings, guest: guest_by_token
     }
   end
 

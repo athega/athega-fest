@@ -6,3 +6,4 @@ tmp
 log
 client_secrets.json
 passenger.*
+css
