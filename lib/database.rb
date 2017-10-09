@@ -17,6 +17,9 @@ end
 
 Mongo::Model.default_database_name = db_name
 
+Mongo.defaults[:w] = true
+Mongo.defaults.delete(:safe)
+
 Mongo.class_eval do
   class << self
     def db(name)
