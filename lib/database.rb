@@ -11,8 +11,8 @@ require './lib/import_from_spreadsheet'
 
 db_name = 'athega_jullunch'
 
-if ENV['MONGOLAB_URI']
-  db_name = URI.parse(ENV['MONGOLAB_URI']).path.gsub(/^\//, '')
+if ENV['MONGODB_URI']
+  db_name = URI.parse(ENV['MONGODB_URI']).path.gsub(/^\//, '')
 end
 
 Mongo::Model.default_database_name = db_name
@@ -26,7 +26,7 @@ Mongo.class_eval do
       name = name.to_s
       @databases ||= {}
       @databases[name] ||= begin
-        connection = Mongo::Connection.from_uri(ENV['MONGOLAB_URI'] || 'mongodb://localhost')
+        connection = Mongo::Connection.from_uri(ENV['MONGODB_URI'] || 'mongodb://localhost')
         connection.db name
       end
     end
