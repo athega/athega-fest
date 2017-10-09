@@ -9,7 +9,7 @@ class Notification
   def self.send_all_pending_invitations!
     # Config
     from     = 'athega@athega.se'
-    subject  = 'Välkommen till Athegas Jullunch'
+    subject  = 'Välkommen till Athegas 20-årskalas'
 
     # Get the templates
     template = IO.read('views/notifications/invitation.haml')
@@ -40,7 +40,7 @@ class Notification
   def self.send_all_pending_welcomes!
     # Config
     from     = 'athega@athega.se'
-    subject  = 'Kul att du vill komma på Athegas Jullunch'
+    subject  = 'Kul att du vill komma på Athegas 20-årskalas'
 
     # Get the templates
     template = IO.read('views/notifications/welcome.haml')
@@ -70,7 +70,7 @@ class Notification
 
   def self.send_all_pending_thank_you_notes!
     from     = 'athega@athega.se'
-    subject  = 'Med önskan om en God Jul'
+    subject  = 'Tack för att du firade med oss'
 
     template = IO.read('views/notifications/thank_you.haml')
     renderer = Haml::Engine.new(template).render_proc({}, :mulled_wine, :food, :coffee, :drink, :image_url)
