@@ -18,6 +18,19 @@
 
 .hidden { display: none; }
 
+.no-bottom-margin {
+  margin-bottom: 0;
+}
+
+.main-content {
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.bubble {
+  padding: 16px;
+}
+
 .alert-message, .info-message, .tweet {
   padding: 0.5em 0.9em;
   -webkit-box-shadow: none;
@@ -153,7 +166,7 @@ a, a:focus, a:visited {
 a:hover { color: brighten($athega_orange, 20); }
 
 body {
-  border-top: 8px solid $athega_orange;
+  background-color: #FFCC33;
 }
 
 #backbone {
@@ -175,10 +188,14 @@ h1,h2,h3,h4,h5 {
 h1 { font-size: 40px; line-height: 42px; }
 
 header {
-  margin-top: 45px; margin-bottom: 25px;
+  margin-top: 45px; margin-bottom: 0;
 
   a {
     text-decoration: none;
+
+    img {
+      vertical-align: top;
+    }
   }
 
   h2 {
@@ -205,7 +222,7 @@ header {
   font-size: 0.9em;
   li { float: left; margin-right: 1em; }
   ul { padding-bottom: 3em; }
-  a, a:visited, a:hover { color: #AAA; text-decoration: none; }
+  a, a:visited, a:hover { color: #000; text-decoration: none; }
 }
 
 #check_in {
@@ -253,8 +270,7 @@ header {
 
   /* All Mobile Sizes (devices and browser) */
   @media only screen and (max-width: 767px) {
-    body { background: #fff; }
-    header { margin: 20px 0; }
+    header { margin: 20px 0 0 0; }
   }
 
   /* Mobile Landscape Size to Tablet Portrait (devices and browsers) */
@@ -264,12 +280,11 @@ header {
   /* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
   @media only screen and (max-width: 479px) {
     body {
-      background: #fff;
       font: 14px/21px "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
     }
 
     header {
-      margin: 15px 0;
+      margin: 15px 0 0 0;
       h2 { font-size: 16px; }
     }
 

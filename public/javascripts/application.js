@@ -1,12 +1,14 @@
 (function() {
-  var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; }, __hasProp = Object.prototype.hasOwnProperty, __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
+  var _ref, _ref1, _ref10, _ref11, _ref12, _ref13, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7, _ref8, _ref9,
+    __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
   window.tick = function() {
     return new Date().getTime();
   };
 
   window.PrettyDate = (function() {
-
     function PrettyDate() {
       this.parse = __bind(this.parse, this);
     }
@@ -15,7 +17,9 @@
       var f, format, seconds, _i, _len, _ref;
       date = date.split('-').join('/');
       seconds = parseInt((new Date - new Date(date)) / 1000);
-      if (seconds < 0) seconds = 0;
+      if (seconds < 0) {
+        seconds = 0;
+      }
       _ref = this.formats;
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         f = _ref[_i];
@@ -37,12 +41,12 @@
 
   })();
 
-  window.ListView = (function() {
-
-    __extends(ListView, Backbone.View);
+  window.ListView = (function(_super) {
+    __extends(ListView, _super);
 
     function ListView() {
-      ListView.__super__.constructor.apply(this, arguments);
+      _ref = ListView.__super__.constructor.apply(this, arguments);
+      return _ref;
     }
 
     ListView.prototype.el = '#app';
@@ -53,8 +57,8 @@
     };
 
     ListView.prototype.render = function() {
-      var pd;
-      var _this = this;
+      var pd,
+        _this = this;
       $(this.el).html(this.template()(this.data()));
       pd = new PrettyDate();
       $(this.el).find('.timestamp').each(function(index, element) {
@@ -75,14 +79,14 @@
 
     return ListView;
 
-  })();
+  })(Backbone.View);
 
-  window.AdsView = (function() {
-
-    __extends(AdsView, ListView);
+  window.AdsView = (function(_super) {
+    __extends(AdsView, _super);
 
     function AdsView() {
-      AdsView.__super__.constructor.apply(this, arguments);
+      _ref1 = AdsView.__super__.constructor.apply(this, arguments);
+      return _ref1;
     }
 
     AdsView.prototype.class_name = 'ads';
@@ -99,14 +103,14 @@
 
     return AdsView;
 
-  })();
+  })(ListView);
 
-  window.CheckInsView = (function() {
-
-    __extends(CheckInsView, ListView);
+  window.CheckInsView = (function(_super) {
+    __extends(CheckInsView, _super);
 
     function CheckInsView() {
-      CheckInsView.__super__.constructor.apply(this, arguments);
+      _ref2 = CheckInsView.__super__.constructor.apply(this, arguments);
+      return _ref2;
     }
 
     CheckInsView.prototype.class_name = 'check_ins';
@@ -117,14 +121,14 @@
 
     return CheckInsView;
 
-  })();
+  })(ListView);
 
-  window.ImagesView = (function() {
-
-    __extends(ImagesView, ListView);
+  window.ImagesView = (function(_super) {
+    __extends(ImagesView, _super);
 
     function ImagesView() {
-      ImagesView.__super__.constructor.apply(this, arguments);
+      _ref3 = ImagesView.__super__.constructor.apply(this, arguments);
+      return _ref3;
     }
 
     ImagesView.prototype.class_name = 'images';
@@ -143,14 +147,14 @@
 
     return ImagesView;
 
-  })();
+  })(ListView);
 
-  window.TweetsView = (function() {
-
-    __extends(TweetsView, ListView);
+  window.TweetsView = (function(_super) {
+    __extends(TweetsView, _super);
 
     function TweetsView() {
-      TweetsView.__super__.constructor.apply(this, arguments);
+      _ref4 = TweetsView.__super__.constructor.apply(this, arguments);
+      return _ref4;
     }
 
     TweetsView.prototype.class_name = 'tweets';
@@ -161,14 +165,14 @@
 
     return TweetsView;
 
-  })();
+  })(ListView);
 
-  window.Router = (function() {
-
-    __extends(Router, Backbone.Router);
+  window.Router = (function(_super) {
+    __extends(Router, _super);
 
     function Router() {
-      Router.__super__.constructor.apply(this, arguments);
+      _ref5 = Router.__super__.constructor.apply(this, arguments);
+      return _ref5;
     }
 
     Router.prototype.routes = {
@@ -202,50 +206,50 @@
 
     return Router;
 
-  })();
+  })(Backbone.Router);
 
-  window.Ad = (function() {
-
-    __extends(Ad, Backbone.Model);
+  window.Ad = (function(_super) {
+    __extends(Ad, _super);
 
     function Ad() {
-      Ad.__super__.constructor.apply(this, arguments);
+      _ref6 = Ad.__super__.constructor.apply(this, arguments);
+      return _ref6;
     }
 
     return Ad;
 
-  })();
+  })(Backbone.Model);
 
-  window.CheckIn = (function() {
-
-    __extends(CheckIn, Backbone.Model);
+  window.CheckIn = (function(_super) {
+    __extends(CheckIn, _super);
 
     function CheckIn() {
-      CheckIn.__super__.constructor.apply(this, arguments);
+      _ref7 = CheckIn.__super__.constructor.apply(this, arguments);
+      return _ref7;
     }
 
     return CheckIn;
 
-  })();
+  })(Backbone.Model);
 
-  window.Image = (function() {
-
-    __extends(Image, Backbone.Model);
+  window.Image = (function(_super) {
+    __extends(Image, _super);
 
     function Image() {
-      Image.__super__.constructor.apply(this, arguments);
+      _ref8 = Image.__super__.constructor.apply(this, arguments);
+      return _ref8;
     }
 
     return Image;
 
-  })();
+  })(Backbone.Model);
 
-  window.Tweet = (function() {
-
-    __extends(Tweet, Backbone.Model);
+  window.Tweet = (function(_super) {
+    __extends(Tweet, _super);
 
     function Tweet() {
-      Tweet.__super__.constructor.apply(this, arguments);
+      _ref9 = Tweet.__super__.constructor.apply(this, arguments);
+      return _ref9;
     }
 
     Tweet.prototype.initialize = function(attrs) {
@@ -264,14 +268,14 @@
 
     return Tweet;
 
-  })();
+  })(Backbone.Model);
 
-  window.Ads = (function() {
-
-    __extends(Ads, Backbone.Collection);
+  window.Ads = (function(_super) {
+    __extends(Ads, _super);
 
     function Ads() {
-      Ads.__super__.constructor.apply(this, arguments);
+      _ref10 = Ads.__super__.constructor.apply(this, arguments);
+      return _ref10;
     }
 
     Ads.prototype.model = Ad;
@@ -280,14 +284,14 @@
 
     return Ads;
 
-  })();
+  })(Backbone.Collection);
 
-  window.CheckIns = (function() {
-
-    __extends(CheckIns, Backbone.Collection);
+  window.CheckIns = (function(_super) {
+    __extends(CheckIns, _super);
 
     function CheckIns() {
-      CheckIns.__super__.constructor.apply(this, arguments);
+      _ref11 = CheckIns.__super__.constructor.apply(this, arguments);
+      return _ref11;
     }
 
     CheckIns.prototype.model = CheckIn;
@@ -296,14 +300,14 @@
 
     return CheckIns;
 
-  })();
+  })(Backbone.Collection);
 
-  window.Images = (function() {
-
-    __extends(Images, Backbone.Collection);
+  window.Images = (function(_super) {
+    __extends(Images, _super);
 
     function Images() {
-      Images.__super__.constructor.apply(this, arguments);
+      _ref12 = Images.__super__.constructor.apply(this, arguments);
+      return _ref12;
     }
 
     Images.prototype.model = Image;
@@ -312,14 +316,14 @@
 
     return Images;
 
-  })();
+  })(Backbone.Collection);
 
-  window.Tweets = (function() {
-
-    __extends(Tweets, Backbone.Collection);
+  window.Tweets = (function(_super) {
+    __extends(Tweets, _super);
 
     function Tweets() {
-      Tweets.__super__.constructor.apply(this, arguments);
+      _ref13 = Tweets.__super__.constructor.apply(this, arguments);
+      return _ref13;
     }
 
     Tweets.prototype.model = Tweet;
@@ -328,10 +332,9 @@
 
     return Tweets;
 
-  })();
+  })(Backbone.Collection);
 
   window.PresentationLoop = (function() {
-
     function PresentationLoop(ms) {
       this.delay = ms;
       this.iteration = 0;

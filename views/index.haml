@@ -1,105 +1,108 @@
-.row
+.row.main-content
   .six.columns
-    - if has_valid_token?
-      - if params[:rsvp].nil?
-        %form{ action: '/rsvp', method: 'post' }
-          %h2 Svara på inbjudan
+    .bubble
+      - if has_valid_token?
+        - if params[:rsvp].nil?
+          %form{ action: '/rsvp', method: 'post' }
+            %h2 Svara på inbjudan
 
-          %fieldset
-            %label{ for: 'guest_name' } Ditt namn
-            %input#guest_name{ type: 'text', name: 'name', value: guest.name }
+            %fieldset
+              %label{ for: 'guest_name' } Ditt namn
+              %input#guest_name{ type: 'text', name: 'name', value: guest.name }
 
-            %label{ for: 'guest_company' } Företag
-            %input#guest_company{ type: 'text', name: 'company', value: guest.company }
+              %label{ for: 'guest_company' } Företag
+              %input#guest_company{ type: 'text', name: 'company', value: guest.company }
 
-          %fieldset
-            %h4 Sittningar
+              %small
+                %em
+                  (Inbjudan är personlig)
 
-            %small.add-bottom.alert-message Om alla kommer samtidigt kan det bli lite |
-                                 trångt. Vi skulle därför uppskatta om ni  |
-                                 vill ange när ni planerar att komma till oss. |
-				 Platserna är begränsade enligt först till kvarn-principen. |
+            %fieldset
+              %h4 RSVP
 
-            %ul.sittings
-              - sittings.each do |sitting|
-                %li.sitting{ class: sitting.guest_status_class }
-                  %label
-                    - if sitting.seats_available?
-                      - if guest.has_checked_sitting?(sitting)
-                        %input{ type: 'radio', name: 'sitting_key', value: sitting.key, checked: '' }
-                      - else
-                        %input{ type: 'radio', name: 'sitting_key', value: sitting.key }
+              %ul.sittings
+                - sittings.each do |sitting|
+                  %li.sitting{ class: sitting.guest_status_class }
+                    %label
+                      - if sitting.seats_available?
+                        - if guest.has_checked_sitting?(sitting)
+                          %input{ type: 'radio', name: 'sitting_key', value: sitting.key, checked: '' }
+                        - else
+                          %input{ type: 'radio', name: 'sitting_key', value: sitting.key }
 
-                    %span
-                      = sitting.title
-                      - if sitting.full? and guest.has_checked_sitting?(sitting)
-                        %small= 'Du har valt den här sittningen som nu är fullbokad.'
-                      -else
-                        %small= sitting.guest_status_text
-            %input{ type: 'hidden', name: 'token', value: guest.token }
-            %input{ :type => 'submit', :value => 'Skicka' }
-      - else
-        - if guest.declined?
-          %h2 Vad synd
-          %p Hoppas att du kan vara med nästa år.
+                      %span
+                        = sitting.title
+                        - if sitting.full? and guest.has_checked_sitting?(sitting)
+                          %small= 'Du har valt den här sittningen som nu är fullbokad.'
+                        -else
+                          %small= sitting.guest_status_text
+              %input{ type: 'hidden', name: 'token', value: guest.token }
+              %input{ :type => 'submit', :value => 'Skicka' }
         - else
-          %h2= "Tack #{guest.name}!"
-          %p Nu är det bara att räkna ner dagarna till julbordet.
+          - if guest.declined?
+            %h2 Vad synd
+            %p Hoppas att du kan vara med när vi firar nästa gång.
+          - else
+            %h2= "Tack #{guest.name}!"
+            %p Nu är det bara att räkna ner dagarna till 20-årskalaset.
 
-        %small.alert-message
-          Det är fortfarande möjligt att
-          %a{ href: "/?token=#{params[:token]}" } ändra
-          ditt svar.
+          %small.alert-message
+            Det är fortfarande möjligt att
+            %a{ href: "/?token=#{params[:token]}" } ändra
+            ditt svar.
 
+          %figure.add-bottom
+            %img{ src: '/images/honka3.jpg' }
+            %small
+              Bild: Det här är Athegamannen, som styrde oss rätt de första åren
+
+      - else
         %figure.add-bottom
-          %img{ src: '/images/yoda.jpg' }
+          %img{ src: '/images/honka3.jpg' }
           %small
-            Foto:
-            %a{ href: 'http://www.flickr.com/photos/tylersharp/4192249096/' } Tyler Sharp
+            Bild: Det här är Athegamannen, som styrde oss rätt de första åren
 
-    - else
-      %figure.add-bottom
-        %img{ src: '/images/yoda.jpg' }
-        %small
-          Foto:
-          %a{ href: 'http://www.flickr.com/photos/tylersharp/4192249096/' } Tyler Sharp
-
-      %p Anmälningen till årets jullunch är stängd.
-      - if is_coming?
-        %p
-          Enligt våra noteringar har du angett att du vill komma på fredag klockan
-          %strong #{guest.sitting}.
-        %p Vi ses!
+        %p Anmälningen till Athegas 20-årskalas är stängd.
+        - if is_coming?
+          %p
+            Enligt våra noteringar har du angett att du vill komma på 20-årskalaset.
+          %p Vi ses!
 
   .nine.offset-by-one.columns
-    %h1 Nu är det snart dags för Athegas traditionella jullunch!
+    .bubble
+      %h1 Athega fyller 20 år!
 
-    %h3.alert-message Sista anmälningsdag: 13/12
+      %h3.alert-message Sista anmälningsdag: 6 nov
 
-    %p
-      Vi dukar fram det goda julbordet fredagen
-      %strong 16 december kl. 11.30
-      och ser till att faten är fyllda och stämningen hög fram till
-      %strong ca. 14.30.
+      %p
+        Det vill vi fira med dig!
 
-    %p
-      %a{ href: 'mailto:torbjorn.nilsson@athega.se'} Torbjörn Nilsson
-      svarar gärna på dina frågor.
+      %p
+        Därför smäller vi upp dörrarna den
+        %strong 9 november från 17:30
+        på
+        %strong Orangeriet
+        nere vid kajen på Norrmälarstrand.
 
-    %p
-      = succeed '.' do
-        Följ oss gärna på
-        %a{ href: 'https://twitter.com/athega' } @athega
-        och om du vill twittra om jullunchen använder du hashtaggen
-        %a{ href: 'https://twitter.com/#!/search/realtime/%23athegajul' } #athegajul
+      %p
+        %a{ href: 'mailto:torbjorn.nilsson@athega.se'} Torbjörn Nilsson
+        svarar gärna på dina frågor.
 
-    %h2 Vägbeskrivning
-    %p
-      Vårt kontor ligger på
-      %strong Hantverkargatan 21, 3tr.
-    %p
-      Närmaste tunnelbanestation är Rådhuset
-      %em (uppgång Parmmätargatan).
+      %p
+        = succeed '.' do
+          Följ oss gärna på
+          %a{ href: 'https://twitter.com/athega' } @athega
+          och om du vill twittra om härligheten använder du hashtaggen
+          %a{ href: 'https://twitter.com/#!/search/realtime/%23athega20' } #athega20
 
-    %a{ href: 'http://g.co/maps/ndcuq' }
-      %img{ src: "https://maps.googleapis.com/maps/api/staticmap?center=Athega%20AB,%20Hantverkargatan%2021,%20Stockholm&markers=color:0xFF6600|Hantverkargatan%2021&zoom=15&size=245x245&sensor=false&scale=2" }
+      %h2 Vägbeskrivning
+      %p
+        %a{ href: 'http://www.orangerietbar.se/' } Orangeriet
+        ligger på
+        %strong Norr Mälarstrand Kajplats 464.
+      %p
+        Närmaste tunnelbanestation är Rådhuset
+        %em (uppgång Parmmätargatan).
+
+      %a{ href: 'https://goo.gl/maps/fwfifiG6nVz' }
+        %img{ src: "https://maps.googleapis.com/maps/api/staticmap?center=Orangeriet,%20Norr%20Mälarstrand%20Kajplats%20464,%20Stockholm&markers=color:0xFF6600|Norr%20Mälarstrand%20Kajplats%20464&zoom=15&size=245x245&sensor=false&scale=2" }
