@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "2.1.4"
+ruby "2.2.8"
 
 gem "thin", require: false
 
@@ -27,4 +27,5 @@ group :development do
   gem "guard-shell",        "~> 0.5"
   gem "guard-coffeescript", "~> 1.3"
   gem "guard-livereload",   "~> 2.0", require: false
+  gem "eventmachine",       "~> 1.0.4", require: false
 end
