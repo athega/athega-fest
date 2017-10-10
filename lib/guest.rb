@@ -79,7 +79,7 @@ class Guest
   end
 
   def token_uri
-    "http://jullunch.athega.se/?token=#{token}"
+    "http://fest.athega.se/?token=#{token}"
   end
 
   protected
