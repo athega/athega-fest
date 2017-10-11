@@ -14,13 +14,17 @@ class Mailer
 
       puts "Sending mail to #{to}"
 
-      response = RestClient.post api_url+"/messages",
-        :from => from,
-        :to => to,
-        :subject => subject,
-        :text => text,
-        :html => html,
-        :'o:testmode' => testmode ? 'yes' : 'no'
+      begin
+        response = RestClient.post api_url+"/messages",
+          :from => from,
+          :to => to,
+          :subject => subject,
+          :text => text,
+          :html => html,
+          :'o:testmode' => testmode ? 'yes' : 'no'
+      rescue => e
+        puts "Failed to send to #{to} with error: #{e.response}"
+      end
     end
 
     Yajl::Parser.parse(response)
