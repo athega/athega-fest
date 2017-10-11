@@ -3,7 +3,7 @@
 class Sitting
   inherit Mongo::Model
 
-  SEAT_COUNT_DOWN_THRESHOLD = 10
+  SEAT_COUNT_DOWN_THRESHOLD = 150
 
   collection "sittings_#{Time.now.year}"
 
@@ -25,8 +25,8 @@ class Sitting
     return 'sitting red' if full?
 
     case guest_count
-      when  0..8 then 'sitting green'
-      when  9..15 then 'sitting yellow'
+      when  0..100 then 'sitting green'
+      when  101..150 then 'sitting yellow'
       else 'sitting red'
     end
   end
@@ -36,8 +36,8 @@ class Sitting
     return '(Tyvärr är den här sittningen fullbokad)' if full?
 
     case guest_count
-      when  0..8 then '(Det finns gott om plats)'
-      when  9..15 then '(Det finns plats)'
+      when  0..100 then '(Det finns gott om plats)'
+      when  101..150 then '(Det finns plats)'
       else red_status_text
     end
   end
