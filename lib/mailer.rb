@@ -12,6 +12,8 @@ class Mailer
     unless api_key.nil?
       api_url = "https://api:#{api_key}@api.mailgun.net/v3/mailer.athega.se"
 
+      puts "Sending mail to #{to}"
+
       response = RestClient.post api_url+"/messages",
         :from => from,
         :to => to,
