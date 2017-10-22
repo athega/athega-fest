@@ -7,18 +7,20 @@ class Guest
 
   attr_accessor :name, :company, :email, :image_url
   attr_accessor :invited_by, :sitting_key, :status, :token
-  attr_accessor :invited_manually, :invitation_email_sent, :thank_you_email_sent, :welcome_email_sent
+  attr_accessor :invited_manually, :invitation_email_sent, :thank_you_email_sent, :welcome_email_sent, :reminder_email_sent
   attr_accessor :arrived, :arrived_at, :departed, :departed_at
   attr_accessor :image_url, :rfid
   attr_accessor :mulled_wine, :food, :drink, :coffee
 
   scope :invited_manually, invited_manually: true
   scope :not_invited_manually, invited_manually: false
+  scope :not_rsvped, sitting_key: nil
 
   scope :not_invited_yet,  invitation_email_sent: false, invited_manually: false
   scope :not_arrived_yet,  arrived:  false, sitting_key: { _in: [100] }
   scope :not_welcomed_yet, welcome_email_sent: nil
   scope :not_thanked_yet, thank_you_email_sent: nil
+  scope :not_reminded_yet, reminder_email_sent: nil
 
   scope :arrived, arrived: true
   scope :departed, departed: true
