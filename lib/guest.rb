@@ -11,6 +11,7 @@ class Guest
   attr_accessor :arrived, :arrived_at, :departed, :departed_at
   attr_accessor :image_url, :rfid
   attr_accessor :mulled_wine, :food, :drink, :coffee
+  attr_accessor :athega, :wikipedia, :dafla_true, :dafla_false, :athegamannen, :johnny_bravo, :perl_true, :perl_false, :javascript, :java, :go, :ruby
 
   scope :invited_manually, invited_manually: true
   scope :not_invited_manually, invited_manually: false
@@ -96,6 +97,18 @@ class Guest
     @food                   = 0
     @drink                  = 0
     @coffee                 = 0
+    @athega                 = 0
+    @wikipedia              = 0
+    @dafla_true             = 0
+    @dafla_false            = 0
+    @athegamannen           = 0
+    @johnny_bravo           = 0
+    @perl_true              = 0
+    @perl_false             = 0
+    @javascript             = 0
+    @java                   = 0
+    @go                     = 0
+    @ruby                   = 0
 
     save
   end

@@ -124,6 +124,23 @@ class JullunchRegister < Sinatra::Base
     public_json_response(guest)
   end
 
+  ## Quiz
+  put %r{/register/quiz/(athega|wikipedia|dafla_true|dafla_false|athegamannen|johnny_bravo|perl_true|perl_false|javascript|java|go|ruby)/([\w-]+)} do |answer, rfid|
+    response['Access-Control-Allow-Origin'] = '*'
+    guest = guest_by_rfid rfid
+
+    guest.instance_variable_set("@#{answer}", guest.instance_variable_get("@#{answer}").to_i + 1)
+    guest.save
+
+    send_to_event_stream(answer, Guest.all.map { |g| g.instance_variable_get("@#{answer}").to_i }.reduce(:+))
+    public_json_response(guest)
+  end
+
+  options '/register/quiz/*' do
+    response['Access-Control-Allow-Origin'] = '*'
+    response['Access-Control-Allow-Methods'] = 'PUT, OPTIONS'
+  end
+
   ## Tag
   put '/register/tag/:rfid' do
     raise Sinatra::NotFound if params[:rfid].nil?
