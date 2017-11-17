@@ -1,55 +1,78 @@
-%p
-  - if image_url
-    <img src="#{image_url}" style="float:right;width:33%;margin:0 8px;"></a>
 %p Hej!
 %br
 %p
-  Vad trevligt att du ville komma och äta jullunch tillsammans med oss.
-%p
-  - if image_url
-    Till höger kan du se hur bilden blev. Portalen letade hela tiden efter ansikten och
-    lyckades oftast hitta just ditt! ;)
-%p
-  - if mulled_wine == 0 && food == 0 && coffee == 0 && drink == 0
-    Du verkar dock ha haft litet otur med kortet eftersom vi inte lyckades registrera
-    något besök vid julbordet.
+  - if arrived
+    Tack för att du kom på vårt 20-årskalas och firade med oss. Vilken fantastisk kväll!
   - else
-    Under årets jullunch drack du <strong>#{mulled_wine}</strong> glas glögg,
-    gjorde <strong>#{food}</strong> besök vid julbordet,
-    <strong>#{drink}</strong> vändor till baren och
-    - if coffee == 0
-      hoppade över kaffet.
-    - elsif coffee == 1
-      avslutade med <strong>en</strong> kopp kaffe.
-    - else
-      avslutade med <strong>#{coffee}</strong> koppar kaffe.
+    Tråkigt att du missade vårt 20-årskalas, men det blir fler tillfällen!
 %p
-  Totalt serverades <strong>76</strong> glas glögg och vid julbordet gjordes <strong>101</strong> besök.
-  Det gjordes <strong>59</strong> barrundor och till sist rundade <strong>109</strong> koppar kaffe av jullunchen.
+  Vi tänkte bjuda på en liten kort film från kalaset, som visar lite härlig stämning
+  och några höjdpunkter, https://youtu.be/mPV2yjUGm_4.
+%div
+  <a href="https://youtu.be/mPV2yjUGm_4" style="text-decoration:none; display:block;" class="nonplayable">
+  <img src="https://i.ytimg.com/vi/mPV2yjUGm_4/mqdefault.jpg" height="274" width="498">
+  </a>
 %p
-  Årets julklapp är en donation till Naturskyddsföreningens
-  <a href="http://www.naturskyddsforeningen.se/nyheter/sa-har-vill-vi-radda-ostersjon">Östersjösatsning</a>.
-  Var och en som kom på årets jullunch har bidragit med 50:- till organisationen.
+  - if athega != 0 || wikipedia != 0  || dafla_true != 0  || dafla_false != 0  || athegamannen != 0  || johnny_bravo != 0  || perl_true != 0  || perl_false != 0  || javascript != 0  || java != 0  || go != 0  || ruby != 0
+    Vad kul att du passade på att svara på några frågor i frågesporten!
+    %ul
+      %li
+        På frågan om vad som kom först, Athega eller Wikipedia, svarade du
+        - if athega > 0 && wikipedia > 0
+          både och, vilket ju inte är helt rätt! Athega är rätt svar.
+        - elsif athega > 0
+          Athega, vilket ju var helt rätt!
+        - elsif wikipedia > 0
+          Wikipedia, vilket faktiskt inte stämmer, då Wikipedia skapades först 2001.
+        - else
+          ingenting, men du visste säkert redan att Athega var rätt svar
+      %li
+        Ja, det stämmer faktiskt att vi hade en "Spotifydödare" något decenium innan lanseringen av Spotify.
+        - if dafla_true > 0 && dafla_false > 0
+          Ditt svar kring detta var litet svårtolkat…
+        - elsif dafla_true > 0
+          Det hade du koll på!
+        - elsif dafla_false > 0
+          Det trodde du inte på!
+      %li
+        - if athegamannen > 0 && johnny_bravo > 0
+          Det kan vara svårt att skilja på Athegamannen och Johnny Bravo, men rätt svar var inte båda! ;)
+          Det var ju Athegamannen på bilden.
+        - elsif athegamannen > 0
+          Det stämmer att det var Athegamannen på bilden!
+        - elsif johnny_bravo > 0
+          Det kan vara svårt att skilja på dem, men det var faktiskt Athegamannen på bilden, inte Johnny Bravo.
+        - else
+          Mannen på bilden var så klart Athegamannen!
+      %li
+        På påståendet att Athega älskar programmeringsspråket Perl, svarade du
+        - if perl_true > 0 && perl_false > 0
+          både sant och falsk och det stämmer faktiskt. De flesta har ett varmt hjärta när det kommer till Perl,
+          men inte alla.
+        - elsif perl_true > 0
+          att det var sant. Så klart det är!
+        - elsif perl_false > 0
+          att det var falskt och OK då, de flesta har ett varmt hjärta när det kommer till Perl,
+          men inte alla.
+        - else
+          inget speciellt, men det stämmer faktiskt, de flesta av oss har ett varmt hjärta när det kommer till Perl.
+      %li
+        När det kommer till våra duktiga utvecklare svarade du att vi behärskade
+        - if javascript > 0
+          Javascript,
+        - if java > 0
+          Java,
+        - if go > 0
+          Go,
+        - if ruby > 0
+          Ruby,
+        - if javascript == 0 && java == 0 && go == 0 && ruby == 0
+          allt (eftersom vi tolkar inget svar som medhåll)
+        vilket ju är helt sant!
+    %p
+      Fint jobbat, med frågesporten tycker vi!
 %p
-  Till sist vill vi passa på att önska dig en riktigt God Jul och ett Gott Nytt År!
+  Tack för den här gången, på återseende och glada hälsningar
   %br
 %p
   %em // Athegagänget
-%br
-%br
-%p
-  PS.
-  %br
-  Årets teknik baserade sig på <a href="https://tessel.io/">Tessel</a>, som är en mikrokontroller som
-  kör JavaScript (Node.js). Du fick ett Athega-kort med ett RFID som var kopplat till dig. Med detta
-  registrerades bland annat ankomst, foto, besök vid julbordet och donationer. Med hjälp av denna
-  information kunde vi uppdatera grafiken på skärmarna.
-  %br
-  %br
-  Portalen du gick igenom när du kom använde en hemsnickrad anisktsdetektor skriven i C++. Med hjälp av
-  <a href="http://opencv.org/">OpenCV</a> och sinnrik filtrering, hittade den ditt ansikte och tog en
-  fint beskuren bild.
-  %br
-  <img src="http://assets.athega.se/jullunch/2016/images/guests/everyone.gif" alt="Allihop">
-  %br
-  DS.
