@@ -79,7 +79,7 @@ class Notification
 
     sent_count = 0
 
-    Guest.said_yes.not_welcomed_yet.sort([:company, 1], [:name, 1]).limit(30).each do |g|
+    Guest.said_yes.not_welcomed_yet.sort([:company, 1], [:name, 1]).limit(50).each do |g|
       html = renderer.call name:       g.name,
                            company:    g.company,
                            invited_by: g.invited_by,
@@ -104,19 +104,33 @@ class Notification
     subject  = 'Tack för att du firade med oss'
 
     template = IO.read('views/notifications/thank_you.haml')
-    renderer = Haml::Engine.new(template).render_proc({}, :mulled_wine, :food, :coffee, :drink, :image_url)
+    renderer = Haml::Engine.new(template).render_proc({}, :arrived, :athega, :wikipedia, :dafla_true, :dafla_false, :athegamannen, :johnny_bravo, :perl_true, :perl_false, :javascript, :java, :go, :ruby)
 
     sent_count = 0
 
-    Guest.not_thanked_yet.arrived.where(company: { _ne: 'Vänner & Familj' }).limit(30).each do |g|
-      html = renderer.call mulled_wine: g.mulled_wine,
-                           food:        g.food,
-                           coffee:      g.coffee,
-                           drink:       g.drink,
-                           image_url:   g.image_url
+    Guest.said_yes.not_thanked_yet.sort([:company, 1], [:name, 1]).limit(50).each do |g|
+      html = renderer.call arrived:      g.arrived,
+                           athega:       g.athega || 0,
+                           wikipedia:    g.wikipedia || 0,
+                           dafla_true:   g.dafla_true || 0,
+                           dafla_false:  g.dafla_false || 0,
+                           athegamannen: g.athegamannen || 0,
+                           johnny_bravo: g.johnny_bravo || 0,
+                           perl_true:    g.perl_true || 0,
+                           perl_false:   g.perl_false || 0,
+                           javascript:   g.javascript || 0,
+                           java:         g.java || 0,
+                           go:           g.go || 0,
+                           ruby:         g.ruby || 0
 
       text = html.gsub(/<\/?[^>]*>/, "")
-      response = Mailer.mail(from, g.email, subject, text, html)
+      response = Mailer.mail(
+          from,
+          g.email,
+          g.arrived ? subject : 'Filmen från Athegas 20-årskalas',
+          text,
+          html
+      )
 
       if response["message"] == "Queued. Thank you."
         g.thank_you_email_sent = true
