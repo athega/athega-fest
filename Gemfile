@@ -8,7 +8,7 @@ gem "dalli",             "~> 2.6", require: "dalli"
 gem "rack-cache",        "~> 1.2", require: "rack/cache"
 
 gem "google-api-client", "~> 0.7.1"
-gem "yajl-ruby",         "~> 1.1.0", require: "yajl"
+gem "yajl-ruby",         "~> 1.3.0", require: "yajl"
 gem "rest-client",       "~> 1.6.7"
 
 gem "sinatra",           "~> 1.4", require: "sinatra/base"
